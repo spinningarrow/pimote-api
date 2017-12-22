@@ -1,0 +1,25 @@
+{:devices {:tv {:description "Panansonic TV"
+                :actions {:power {:remote :tv
+                                  :button "KEY_POWER"}
+                          :ok {:remote :tv
+                               :button "KEY_OK"}
+                          :source {:remote :tv
+                                   :button "TV/AV"}}}
+           :receiver {:description "Marantz Receiver"
+                      :actions {:power-on {:remote :receiver-power
+                                           :button "POWER_ON"}
+                                :power-off {:remote :receiver-power
+                                            :button "POWER_OFF"}
+                                :power {:remote :receiver-functions
+                                        :button "SOURCE_ON-OFF"}
+                                :volume-up {:remote :receiver-functions
+                                            :button "VOLUME_UP"}
+                                :volume-down {:remote :receiver-functions
+                                              :button "VOLUME_DOWN"}
+                                :input-cd {:remote :receiver-functions
+                                           :button "CD"}
+                                :input-phono {:remote :receiver-functions
+                                              :button "PHONO"}}}}
+ :remotes {:tv {:name "Panasonic_N2QAYB000048"}
+           :receiver-power {:name "Marantz_RC8000PM"}
+           :receiver-functions {:name "Marantz_RC8000PM_RC-5"}}}
