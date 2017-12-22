@@ -33,11 +33,18 @@
                  " and action "
                  (:button action)))))
 
+(defn wrap-access-control-allow-origin
+  [handler]
+  (fn [request]
+    (let [response (handler request)]
+      (assoc-in response [:headers "Access-Control-Allow-Origin"] "*"))))
+
 (def handler
-  (make-handler ["/" {"" index-handler
-                      "tv" tv-handler
-                      "receiver" receiver-handler
-                      ["devices/" :device "/actions/" :action "/executions"] executions-handler}]))
+  (wrap-access-control-allow-origin
+    (make-handler ["/" {"" index-handler
+                        "tv" tv-handler
+                        "receiver" receiver-handler
+                        ["devices/" :device "/actions/" :action "/executions"] executions-handler}])))
 
 (defn -main
   [& args]
