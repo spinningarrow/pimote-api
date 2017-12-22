@@ -1,8 +1,11 @@
 (ns pimote.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [ring.util.response :refer [content-type response]]
-            [bidi.ring :refer [make-handler]])
+            [bidi.ring :refer [make-handler]]
+            [clojure.java.io :as io])
   (:gen-class))
+
+(def config (clojure.edn/read-string (slurp (io/resource "config.edn"))))
 
 (defn index-handler
   [request]
@@ -16,10 +19,23 @@
   [request]
   (response (pr-str {:name "receiver"})))
 
+(defn executions-handler
+  [{:keys [route-params]}]
+  (let [device (get-in config [:devices (keyword (:device route-params))])
+        action (get-in device [:actions (keyword (:action route-params))])
+        remote (get-in config [:remotes (action :remote) :name])]
+    (response (str "This is device "
+                 (:description device)
+                 " and remote "
+                 remote
+                 " and action "
+                 (:button action)))))
+
 (def handler
   (make-handler ["/" {"" index-handler
                       "tv" tv-handler
-                      "receiver" receiver-handler}]))
+                      "receiver" receiver-handler
+                      ["devices/" :device "/actions/" :action "/executions"] executions-handler}]))
 
 (defn -main
   [& args]
