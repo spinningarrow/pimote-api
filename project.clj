@@ -8,4 +8,6 @@
                  [bidi "2.1.2"]]
   :main ^:skip-aot pimote.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}}
+  :ring {:handler pimote.core/handler}
+  :plugins [[lein-ring "0.12.2"]])
