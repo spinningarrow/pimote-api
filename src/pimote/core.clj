@@ -2,7 +2,8 @@
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [ring.util.response :refer [content-type response]]
             [bidi.ring :refer [make-handler]]
-            [clojure.java.io :as io])
+            [clojure.java.io :as io]
+            [pimote.remote :as remote])
   (:gen-class))
 
 (def config (clojure.edn/read-string (slurp (io/resource "config.edn"))))
@@ -23,11 +24,12 @@
   [{:keys [route-params]}]
   (let [device (get-in config [:devices (keyword (:device route-params))])
         action (get-in device [:actions (keyword (:action route-params))])
-        remote (get-in config [:remotes (action :remote) :name])]
+        remote (get-in config [:remotes (action :remote)])]
+    (remote/tap (remote :name) (action :button))
     (response (str "This is device "
                  (:description device)
                  " and remote "
-                 remote
+                 (remote :name)
                  " and action "
                  (:button action)))))
 
