@@ -1,8 +1,11 @@
 # pimote-api
 
-Dev:
+Install dependencies:
 
     direnv allow
+
+Dev:
+
     lein ring server
 
 Build:
