@@ -1,6 +1,6 @@
-(ns pimote.core-test
+(ns pimote-api.core-test
   (:require [clojure.test :refer :all]
-            [pimote.core :refer :all]))
+            [pimote-api.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

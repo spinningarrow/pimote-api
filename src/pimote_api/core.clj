@@ -1,9 +1,9 @@
-(ns pimote.core
+(ns pimote-api.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [ring.util.response :refer [content-type response]]
             [bidi.ring :refer [make-handler]]
             [clojure.java.io :as io]
-            [pimote.remote :as remote])
+            [pimote-api.remote :as remote])
   (:gen-class))
 
 (def config (clojure.edn/read-string (slurp (io/resource "config.edn"))))

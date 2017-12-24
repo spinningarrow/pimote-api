@@ -1,4 +1,4 @@
-(ns pimote.remote
+(ns pimote-api.remote
   "A thin wrapper around irsend"
   (:require [clojure.java.shell :refer [sh]]))
 

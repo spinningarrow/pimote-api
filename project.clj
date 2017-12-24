@@ -1,4 +1,4 @@
-(defproject pimote "0.1.0-SNAPSHOT"
+(defproject pimote-api "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -6,8 +6,8 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [ring "1.6.3"]
                  [bidi "2.1.2"]]
-  :main ^:skip-aot pimote.core
+  :main ^:skip-aot pimote-api.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
-  :ring {:handler pimote.core/handler}
+  :ring {:handler pimote-api.core/handler}
   :plugins [[lein-ring "0.12.2"]])

@@ -1,4 +1,4 @@
-# pimote
+# pimote-api
 
 FIXME: description
 
