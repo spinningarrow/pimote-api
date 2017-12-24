@@ -1,6 +1,7 @@
 (ns pimote-api.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [ring.util.response :refer [content-type response]]
+            [ring.middleware.logger :refer [wrap-with-logger]]
             [bidi.ring :refer [make-handler]]
             [clojure.java.io :as io]
             [pimote-api.remote :as remote])
@@ -40,11 +41,12 @@
       (assoc-in response [:headers "Access-Control-Allow-Origin"] "*"))))
 
 (def handler
-  (wrap-access-control-allow-origin
-    (make-handler ["/" {"" index-handler
-                        "tv" tv-handler
-                        "receiver" receiver-handler
-                        ["devices/" :device "/actions/" :action "/executions"] executions-handler}])))
+  (wrap-with-logger
+    (wrap-access-control-allow-origin
+      (make-handler ["/" {"" index-handler
+                          "tv" tv-handler
+                          "receiver" receiver-handler
+                          ["devices/" :device "/actions/" :action "/executions"] executions-handler}]))))
 
 (defn -main
   [& args]
