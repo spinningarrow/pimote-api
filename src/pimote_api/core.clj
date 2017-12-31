@@ -14,6 +14,13 @@
   [request]
   {:message "hello!"})
 
+(defn devices-handler
+  [_]
+  (-> config
+      :devices
+      keys
+      sort))
+
 (defn actions-handler
   [{:keys [route-params]}]
   (let [device (get-in config [:devices (keyword (:device route-params))])]
@@ -50,6 +57,7 @@
 
 (def routes
   ["/" {"" index-handler
+        "devices" devices-handler
         ["devices/" :device "/actions"] actions-handler
         ["devices/" :device "/actions/" :action "/executions"] executions-handler}])
 
