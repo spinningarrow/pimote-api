@@ -21,6 +21,11 @@
   [request]
   (response (pr-str {:name "receiver"})))
 
+(defn actions-handler
+  [{:keys [route-params]}]
+  (let [device (get-in config [:devices (keyword (:device route-params))])]
+    (response (pr-str (sort (keys (device :actions)))))))
+
 (defn executions-handler
   [{:keys [route-params]}]
   (let [device (get-in config [:devices (keyword (:device route-params))])
@@ -43,6 +48,7 @@
       (make-handler ["/" {"" index-handler
                           "tv" tv-handler
                           "receiver" receiver-handler
+                          ["devices/" :device "/actions"] actions-handler
                           ["devices/" :device "/actions/" :action "/executions"] executions-handler}]))))
 
 (defn -main
