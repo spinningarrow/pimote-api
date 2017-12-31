@@ -11,20 +11,12 @@
 
 (defn index-handler
   [request]
-  (response (pr-str {:message "hello!"})))
-
-(defn tv-handler
-  [request]
-  (response (pr-str {:name "tv"})))
-
-(defn receiver-handler
-  [request]
-  (response (pr-str {:name "receiver"})))
+  {:message "hello!"})
 
 (defn actions-handler
   [{:keys [route-params]}]
   (let [device (get-in config [:devices (keyword (:device route-params))])]
-    (response (pr-str (sort (keys (device :actions)))))))
+    (sort (keys (device :actions)))))
 
 (defn executions-handler
   [{:keys [route-params]}]
@@ -32,9 +24,15 @@
         action (get-in device [:actions (keyword (:action route-params))])
         remote (get-in config [:remotes (action :remote)])]
     (remote/tap (remote :name) (action :button))
-    (response (pr-str {:device (device :description)
-                       :remote (remote :name)
-                       :button (action :button)}))))
+    {:device (device :description)
+     :remote (remote :name)
+     :button (action :button)}))
+
+(defn wrap-response-edn
+  [handler]
+  (fn [request]
+    (let [body (handler request)]
+      (response (pr-str body)))))
 
 (defn wrap-access-control-allow-origin
   [handler]
@@ -45,11 +43,10 @@
 (def handler
   (wrap-with-logger
     (wrap-access-control-allow-origin
-      (make-handler ["/" {"" index-handler
-                          "tv" tv-handler
-                          "receiver" receiver-handler
-                          ["devices/" :device "/actions"] actions-handler
-                          ["devices/" :device "/actions/" :action "/executions"] executions-handler}]))))
+      (wrap-response-edn
+        (make-handler ["/" {"" index-handler
+                            ["devices/" :device "/actions"] actions-handler
+                            ["devices/" :device "/actions/" :action "/executions"] executions-handler}])))))
 
 (defn -main
   [& args]
