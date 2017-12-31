@@ -49,12 +49,13 @@
       (assoc-in response [:headers "Access-Control-Allow-Origin"] "*"))))
 
 (def handler
-  (wrap-with-logger
-    (wrap-access-control-allow-origin
-      (wrap-response-json
-        (make-handler ["/" {"" index-handler
-                            ["devices/" :device "/actions"] actions-handler
-                            ["devices/" :device "/actions/" :action "/executions"] executions-handler}])))))
+  (->
+    (make-handler ["/" {"" index-handler
+                        ["devices/" :device "/actions"] actions-handler
+                        ["devices/" :device "/actions/" :action "/executions"] executions-handler}])
+    wrap-response-json
+    wrap-access-control-allow-origin
+    wrap-with-logger))
 
 (defn -main
   [& args]
