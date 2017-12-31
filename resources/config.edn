@@ -1,4 +1,4 @@
-{:devices {:tv {:description "Panansonic TV"
+{:devices {:TV {:description "Panansonic TV"
                 :actions {:power {:remote :tv
                                   :button "KEY_POWER"}
                           :ok {:remote :tv
@@ -24,11 +24,11 @@
                                               :button "VOLUME_DOWN"}
                                 :mute {:remote :receiver-functions
                                        :button "MUTE"}
-                                :input-cd {:remote :receiver-functions
+                                :cd {:remote :receiver-functions
                                            :button "CD"}
-                                :input-phono {:remote :receiver-functions
+                                :phono {:remote :receiver-functions
                                               :button "PHONO"}
-                                :input-tuner {:remote :receiver-functions
+                                :tuner {:remote :receiver-functions
                                               :button "TUNER"}}}}
  :remotes {:tv {:name "Panasonic_N2QAYB000048"}
            :receiver-power {:name "Marantz_RC8000PM"}
