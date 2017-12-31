@@ -48,11 +48,14 @@
     (let [response (handler request)]
       (assoc-in response [:headers "Access-Control-Allow-Origin"] "*"))))
 
+(def routes
+  ["/" {"" index-handler
+        ["devices/" :device "/actions"] actions-handler
+        ["devices/" :device "/actions/" :action "/executions"] executions-handler}])
+
 (def handler
   (->
-    (make-handler ["/" {"" index-handler
-                        ["devices/" :device "/actions"] actions-handler
-                        ["devices/" :device "/actions/" :action "/executions"] executions-handler}])
+    (make-handler routes)
     wrap-response-json
     wrap-access-control-allow-origin
     wrap-with-logger))
