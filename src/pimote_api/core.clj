@@ -27,12 +27,9 @@
         action (get-in device [:actions (keyword (:action route-params))])
         remote (get-in config [:remotes (action :remote)])]
     (remote/tap (remote :name) (action :button))
-    (response (str "This is device "
-                 (:description device)
-                 " and remote "
-                 (remote :name)
-                 " and action "
-                 (:button action)))))
+    (response (pr-str {:device (device :description)
+                       :remote (remote :name)
+                       :button (action :button)}))))
 
 (defn wrap-access-control-allow-origin
   [handler]
