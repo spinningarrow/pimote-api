@@ -4,7 +4,13 @@
                           :ok {:remote :tv
                                :button "KEY_OK"}
                           :source {:remote :tv
-                                   :button "TV/AV"}}}
+                                   :button "TV/AV"}
+                          :mute {:remote :tv
+                                 :button "KEY_MUTE"}
+                          :volume-up {:remote :tv
+                                      :button "KEY_VOLUMEUP"}
+                          :volume-down {:remote :tv
+                                        :button "KEY_VOLUMEDOWN"}}}
            :receiver {:description "Marantz Receiver"
                       :actions {:power-on {:remote :receiver-power
                                            :button "POWER_ON"}
@@ -16,10 +22,14 @@
                                             :button "VOLUME_UP"}
                                 :volume-down {:remote :receiver-functions
                                               :button "VOLUME_DOWN"}
+                                :mute {:remote :receiver-functions
+                                       :button "MUTE"}
                                 :input-cd {:remote :receiver-functions
                                            :button "CD"}
                                 :input-phono {:remote :receiver-functions
-                                              :button "PHONO"}}}}
+                                              :button "PHONO"}
+                                :input-tuner {:remote :receiver-functions
+                                              :button "TUNER"}}}}
  :remotes {:tv {:name "Panasonic_N2QAYB000048"}
            :receiver-power {:name "Marantz_RC8000PM"}
            :receiver-functions {:name "Marantz_RC8000PM_RC-5"}}}
