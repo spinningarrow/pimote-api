@@ -3,6 +3,7 @@
             [ring.util.response :refer [content-type response]]
             [ring.middleware.logger :refer [wrap-with-logger]]
             [bidi.ring :refer [make-handler]]
+            [cheshire.core :refer [generate-string]]
             [clojure.java.io :as io]
             [pimote-api.remote :as remote])
   (:gen-class))
@@ -34,6 +35,13 @@
     (let [body (handler request)]
       (response (pr-str body)))))
 
+(defn wrap-response-json
+  [handler]
+  (fn [request]
+    (let [body (handler request)
+          json-response (response (generate-string body))]
+      (assoc-in json-response [:headers "Content-Type"] "application/json"))))
+
 (defn wrap-access-control-allow-origin
   [handler]
   (fn [request]
@@ -43,7 +51,7 @@
 (def handler
   (wrap-with-logger
     (wrap-access-control-allow-origin
-      (wrap-response-edn
+      (wrap-response-json
         (make-handler ["/" {"" index-handler
                             ["devices/" :device "/actions"] actions-handler
                             ["devices/" :device "/actions/" :action "/executions"] executions-handler}])))))

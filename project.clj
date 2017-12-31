@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [ring "1.6.3"]
                  [ring.middleware.logger "0.5.0"]
-                 [bidi "2.1.2"]]
+                 [bidi "2.1.2"]
+                 [cheshire "5.8.0"]]
   :main ^:skip-aot pimote-api.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
