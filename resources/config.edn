@@ -10,7 +10,15 @@
                           :volume-up {:remote :tv
                                       :button "KEY_VOLUMEUP"}
                           :volume-down {:remote :tv
-                                        :button "KEY_VOLUMEDOWN"}}}
+                                        :button "KEY_VOLUMEDOWN"}
+                          :up {:remote :tv
+                               :button "KEY_UP"}
+                          :down {:remote :tv
+                                 :button "KEY_DOWN"}
+                          :left {:remote :tv
+                                 :button "KEY_LEFT"}
+                          :right {:remote :tv
+                                  :button "KEY_RIGHT"}}}
            :receiver {:description "Marantz Receiver"
                       :actions {:power-on {:remote :receiver-power
                                            :button "POWER_ON"}
