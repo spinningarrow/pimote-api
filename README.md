@@ -6,7 +6,7 @@ Install dependencies:
 
 Dev:
 
-    lein ring server
+    lein ring server-headless
 
 Build:
 
