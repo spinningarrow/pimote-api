@@ -3,6 +3,8 @@
                                   :button "KEY_POWER"}
                           :ok {:remote :tv
                                :button "KEY_OK"}
+                          :exit {:remote :tv
+                                 :button "KEY_EXIT"}
                           :source {:remote :tv
                                    :button "TV/AV"}
                           :mute {:remote :tv
