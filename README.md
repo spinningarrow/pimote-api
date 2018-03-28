@@ -1,13 +1,17 @@
 # pimote-api
 
-Install dependencies:
+Install dependencies (requires Nix and direnv):
 
     direnv allow
 
-Dev:
+Start dev server:
 
-    lein ring server-headless
+    make start
 
-Build:
+Run tests:
 
-    lein uberjar
+	make test
+
+Build uberjar:
+
+	make build
