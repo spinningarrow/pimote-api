@@ -1,4 +1,4 @@
-language: clojure
+language: nix
 jobs:
   include:
     - stage: test
