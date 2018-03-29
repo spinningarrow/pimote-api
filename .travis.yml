@@ -1,4 +1,9 @@
 language: nix
+
+branches:
+  only:
+    - master
+
 jobs:
   include:
     - stage: test
