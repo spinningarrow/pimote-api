@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 create_release() {
 	curl --progress-bar \
 		-u spinningarrow:$GITHUB_RELEASE_TOKEN \
