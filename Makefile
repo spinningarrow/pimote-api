@@ -1,4 +1,4 @@
-.PHONY: test build start
+.PHONY: test build start deploy
 
 test:
 	lein test
@@ -8,3 +8,6 @@ build:
 
 start:
 	lein ring server-headless
+
+deploy:
+	./deploy.sh

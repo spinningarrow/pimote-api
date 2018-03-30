@@ -10,3 +10,5 @@ jobs:
       script: make test
     - stage: build
       script: make build
+    - stage: deploy
+      script: make deploy
