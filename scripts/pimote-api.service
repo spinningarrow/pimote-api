@@ -1,5 +1,5 @@
 [Service]
-ExecStart=/usr/bin/java -jar /home/pi/sahil/pimote-api-0.1.0-SNAPSHOT-standalone.jar
+ExecStart=/usr/bin/java -jar /home/pi/sahil/pimote-api.jar
 Restart=always
 StandardOutput=syslog
 StandardError=syslog
