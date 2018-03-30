@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-set -x
-
 create_release() {
+	set -x
 	curl --progress-bar \
 		-u spinningarrow:$GITHUB_RELEASE_TOKEN \
 		-d '{ "tag_name": "'$tag_name'" }' \
 		https://api.github.com/repos/spinningarrow/pimote-api/releases
+	set +x
 }
 
 parse_upload_url() {
@@ -14,6 +14,7 @@ parse_upload_url() {
 }
 
 upload_artifact() {
+	set -x
 	local upload_url=$1
 	local asset_file=$2
 
@@ -22,6 +23,7 @@ upload_artifact() {
 		-H 'Content-Type: application/javascript' \
 		--data-binary @${asset_file} \
 		"${upload_url}?name=pimote.jar"
+	set +x
 }
 
 parse_download_url() {
