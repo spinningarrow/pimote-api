@@ -10,4 +10,4 @@ start:
 	lein ring server-headless
 
 deploy:
-	./deploy.sh
+	./scripts/deploy.sh
