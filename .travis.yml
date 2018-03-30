@@ -4,6 +4,8 @@ branches:
   only:
     - master
 
+skip_cleanup: true
+
 jobs:
   include:
     - stage: test
