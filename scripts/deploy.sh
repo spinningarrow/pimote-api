@@ -22,7 +22,7 @@ upload_artifact() {
 		-u spinningarrow:$GITHUB_RELEASE_TOKEN \
 		-H 'Content-Type: application/javascript' \
 		--data-binary @${asset_file} \
-		"${upload_url}?name=pimote.jar"
+		"${upload_url}?name=pimote-api.jar"
 	set +x
 }
 
