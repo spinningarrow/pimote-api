@@ -29,6 +29,9 @@ parse_download_url() {
 }
 
 asset_file=$(ls target/uberjar/*standalone.jar)
+echo Asset file ${asset_file}
+test -z ${asset_file} && exit 1
+
 app_version=$(echo '(System/getProperty "pimote-api.version")' | lein repl | tail -n 2 | head -n 1 | cut -d'"' -f2)
 commit_hash=$(git log -n1 --pretty=%h)
 tag_name="${app_version}-${commit_hash}"
