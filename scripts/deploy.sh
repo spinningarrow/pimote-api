@@ -30,6 +30,19 @@ parse_download_url() {
 	egrep -o 'browser_download_url":\s?".+"' | cut -d':' -f2- | cut -d'"' -f2
 }
 
+publish_deployment_message() {
+	set -x
+	local download_url=$1
+	local publish_url='https://ps.pndsn.com/publish'
+	local channel='pimote-deployments'
+
+	curl --progress-bar \
+		-H 'Content-Type: application/json' \
+		-d '{"name": "pimote-api", "url": "'${download_url}'"}' \
+		"${publish_url}/${PUBNUB_PUBLISH_KEY}/${PUBNUB_SUBSCRIBE_KEY}/0/${channel}/0?uuid=${PUBNUB_UUID}"
+	set +x
+}
+
 asset_file=$(ls target/uberjar/*standalone.jar)
 test -z ${asset_file} && exit 1
 
@@ -48,3 +61,6 @@ echo Uploading artifact ${asset_file}
 download_url=$(upload_artifact ${upload_url} ${asset_file} | parse_download_url)
 test -z ${download_url} && exit 1
 echo ${download_url}
+
+echo Publishing message
+publish_deployment_message ${download_url}
