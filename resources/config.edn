@@ -1,4 +1,9 @@
-{:devices {:TV {:description "Panansonic TV"
+{:devices {:AC {:description "Daikin Air Conditioner"
+                :actions {:on {:remote :ac
+                               :button "ON_COOL_24_FANSILENT_SWINGOFF_SWINGOFF"}
+                          :off {:remote :ac
+                                :button "OFF_COOL_24_FANSILENT_SWINGOFF_SWINGOFF"}}}
+           :TV {:description "Panansonic TV"
                 :actions {:power {:remote :tv
                                   :button "KEY_POWER"}
                           :ok {:remote :tv
@@ -42,4 +47,5 @@
                                               :button "TUNER"}}}}
  :remotes {:tv {:name "Panasonic_N2QAYB000048"}
            :receiver-power {:name "Marantz_RC8000PM"}
-           :receiver-functions {:name "Marantz_RC8000PM_RC-5"}}}
+           :receiver-functions {:name "Marantz_RC8000PM_RC-5"}
+           :ac {:name "DAIKIN"}}}

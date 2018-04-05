@@ -10,8 +10,8 @@ Start dev server:
 
 Run tests:
 
-	make test
+    make test
 
 Build uberjar:
 
-	make build
+    make build
