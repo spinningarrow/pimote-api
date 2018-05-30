@@ -59,7 +59,7 @@
   ["/" {"" index-handler
         "devices" devices-handler
         ["devices/" :device "/actions"] actions-handler
-        ["devices/" :device "/actions/" :action "/executions"] executions-handler}])
+        ["devices/" :device "/actions/" :action "/executions"] {:post {"" executions-handler}}}])
 
 (def handler
   (->
