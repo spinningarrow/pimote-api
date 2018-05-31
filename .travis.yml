@@ -7,6 +7,6 @@ branches:
 jobs:
   include:
     - stage: test
-      script: make test
+      script: nix-shell --command 'make test'
     - stage: build and deploy
-      script: make build && make deploy
+      script: nix-shell --command 'make build && make deploy'
